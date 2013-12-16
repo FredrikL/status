@@ -35,7 +35,7 @@ def diskusage
 	points = [lines[1], lines[lines.length-2]]
 	points.each do |p|
 		parts = p.split(" ")
-		puts "#{parts[5]} #{parts[2]}/#{parts[2]} (#{parts[4]})"
+		puts "#{parts[5]} #{parts[2]} / #{parts[1]} (#{parts[4]})"
 	end
 end
 
@@ -50,7 +50,7 @@ def mem
 	pt = o.split(" ")
 	total = pt[7].to_i / 1024
 	used = pt[8].to_i / 1024
-	puts "#{used}/#{total}"
+	puts "#{used} / #{total}"
 end
 
 disk_temp disks
