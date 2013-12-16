@@ -1,3 +1,6 @@
+require 'sys/uptime'
+include Sys
+
 disks = ["/dev/sdb", "/dev/sdc"]
 
 def disk_temp d
@@ -21,8 +24,23 @@ def cpu_temp
 	end 
 end
 
+def uptime
+	u = Uptime.dhms
+	puts "#{u[0]} days, #{u[1]}:#{u[2]} "
+end
+
+def diskusage
+	df = `df -h --total 2>/dev/null`
+	lines = df.split("\n")
+	points = [lines[1], lines[lines.length-2]]
+	points.each do |p|
+		parts = p.split(" ")
+		puts "#{parts[5]} #{parts[2]}/#{parts[2]} (#{parts[4]})"
+	end
+end
 
 disk_temp disks
 mdhealth
 cpu_temp
-
+uptime
+diskusage
