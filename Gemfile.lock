@@ -1,0 +1,14 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ffi (1.9.3)
+    paint (0.8.6)
+    sys-uptime (0.6.1)
+      ffi (>= 1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  paint
+  sys-uptime
