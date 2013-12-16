@@ -45,6 +45,13 @@ def load
 	puts "#{p[0]} #{p[1]} #{p[2]}"
 end
 
+def mem
+	o = `free`
+	pt = o.split(" ")
+	total = pt[7].to_i / 1024
+	used = pt[8].to_i / 1024
+	puts "#{used}/#{total}"
+end
 
 disk_temp disks
 mdhealth
@@ -52,3 +59,4 @@ cpu_temp
 uptime
 diskusage
 load
+mem
