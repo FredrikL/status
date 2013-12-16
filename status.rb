@@ -8,7 +8,9 @@ def disk_temp d
 end
 
 def mdhealth
-
+	status = `cat /proc/mdstat`
+	s = status.match(/(md[0-9]+)[\w\W]+?(\[[U_]+\])/s).captures
+	puts "#{s[0]} -> #{s[1]}"
 end
 
 def cpu_temp
