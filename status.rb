@@ -39,8 +39,16 @@ def diskusage
 	end
 end
 
+def load
+	l = `cat /proc/loadavg`
+	p = l.split(" ")
+	puts "#{p[0]} #{p[1]} #{p[2]}"
+end
+
+
 disk_temp disks
 mdhealth
 cpu_temp
 uptime
 diskusage
+load
