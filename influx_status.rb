@@ -14,7 +14,7 @@ def disk_temp
     temp = temp.chomp[0..-3]
 		#"#{dks} = #{temp}".chomp
     data = {
-      :temp => temp,
+      :temp => temp.to_f,
       :disk => dks
     }
 
@@ -40,7 +40,7 @@ def cpu_temp
 		parts = line.split(' ')
 		 temp = parts.first
      data = {
-      :temp => temp[0..-3],
+      :temp => temp[0..-3].to_f,
       :core => index+1
     }
 
@@ -57,7 +57,7 @@ def diskusage
 		"#{parts[5]} #{parts[2]} / #{parts[1]} (#{parts[4]})"
      data = {
       :usedp => parts[4][0..-2].to_i,
-      :used => parts[2],
+      :used => parts[2].to_i,
       :disk => parts[5]
     }
 
@@ -70,9 +70,9 @@ def load
 	p = l.split(" ")
 	"#{p[0]} #{p[1]} #{p[2]}"
   data = {
-    :one => p[0],
-    :five => p[1],
-    :fifteen => p[2]
+    :one => p[0].to_f,
+    :five => p[1].to_f,
+    :fifteen => p[2].to_f
   }
 
   @influxdb.write_point("load", data)
@@ -85,7 +85,7 @@ def mem
 	used = pt[8].to_i / 1024
 	"#{used}mb / #{total}mb"
   data = {
-    :value => pt[15]
+    :value => pt[15].to_i
   }
 
   @influxdb.write_point("mem", data)
